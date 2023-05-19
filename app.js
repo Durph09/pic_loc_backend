@@ -1,15 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const placesRoutes = require('./routes/places-route');
-const HttpError = require('./models/http-error')
+const placesRoutes = require('./routes/places-route'); // imports 
+const userRoutes = require('./routes/user-route');
+const HttpError = require('./models/http-error');
 
 
-const app = express();
+const app = express();  //registering as middleware
 
-app.use(bodyParser.json())
+app.use(bodyParser.json()) //registering as middleware
+
 
 app.use('/api/places',placesRoutes); // => /api/places/....
+app.use('/api/users', userRoutes); //registering as middleware
+
 
 app.use((req, res, next) => {
 const error= new HttpError('Could not find this route.', 404);
