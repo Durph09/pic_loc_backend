@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-require('dotenv').config();
+require("dotenv").config();
 
 const placesRoutes = require("./routes/places-route"); // imports
 const userRoutes = require("./routes/user-route");
@@ -27,12 +27,13 @@ app.use((error, req, res, next) => {
   res.json({ messsage: error.message || "An unknown error occured!" });
 });
 
-mongoose.connect(`mongodb+srv://crmahaney9:${process.env.MongoDB_Pass}@cluster0.hi3ljfj.mongodb.net/?retryWrites=true&w=majority`)
-.then(() => {
+mongoose
+  .connect(
+    `mongodb+srv://crmahaney9:${process.env.MongoDB_Pass}@cluster0.hi3ljfj.mongodb.net/?retryWrites=true&w=majority`
+  )
+  .then(() => {
     app.listen(5000);
-})
-.catch(err => {
+  })
+  .catch((err) => {
     console.log(err);
-});
-
-
+  });
